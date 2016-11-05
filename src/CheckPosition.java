@@ -5,7 +5,7 @@ public class CheckPosition {
 	private int size;
 	private int winner;
 	private boolean won;
-	Connect4GUI connect = new Connect4GUI();
+	Connect4Controller controller = new Connect4Controller();
 
 	//constructor
 	public CheckPosition(int x, int y) {
@@ -27,7 +27,7 @@ public class CheckPosition {
 		if (won) {
 			//update UI triggers from here
 			System.out.println("Player won");
-			connect.updateUI();
+			controller.updateUI();
 //			Connect4GUI.winner.removeAll();
 //			Connect4GUI.winner.add(new JTextField("Game Over! you won!"));
 		}

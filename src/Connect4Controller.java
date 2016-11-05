@@ -13,22 +13,27 @@ import javax.swing.JPanel;
 public class Connect4Controller implements ActionListener {
 	
 	static JButton b[][];
-	CheckPosition a;
+	CheckPosition model;
 	private int size;
 	private boolean player1;
 	boolean isOdd = true;
 	private boolean validMove;
 	private boolean won;
+	Connect4GUI view = new Connect4GUI();
 
 
 	//constructor
 	public Connect4Controller(int size, int win) {
-		a = new CheckPosition(size, win);
+		model = new CheckPosition(size, win);
 		this.size = size; 
 		b = new JButton[size][size];
 		player1 = true;
 	}
 	
+	public Connect4Controller() {
+		// TODO Auto-generated constructor stub
+	}
+
 	/*
 	 * retunrs a JPanel to be used by the game as the game panel with the buttons
 	 * @params none
@@ -86,8 +91,8 @@ public class Connect4Controller implements ActionListener {
 			}
 		validMove = false;
 		}
-		a.add(move, column, player1);
-		won = a.checkWinner();
+		model.add(move, column, player1);
+		won = model.checkWinner();
 
 	}
 	
@@ -118,5 +123,10 @@ public class Connect4Controller implements ActionListener {
 		//TODO Change JLabel to winner
 		
 		return win;
+	}
+
+	public void updateUI() {
+		view.updateUI();
+		
 	}
 }
