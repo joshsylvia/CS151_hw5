@@ -1,0 +1,1 @@
+User: 009525984 (Ladimer Elyeh)User: 010157797 (Josh Sylvia)Notes:Design pattern used Model View Controller. MVC is usually an Architecture pattern, but can be used as a design pattern and for this code MVC was very adequate. 

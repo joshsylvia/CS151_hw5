@@ -2,9 +2,14 @@
 public class Connnect4 {
 
 	public static void main(String[] args) {
-	//	if (args[0] < args[1]) {System.out.println("Incorrect run"); exit(0);}
-		Connect4GUI connect =  new Connect4GUI(3, 2);
-		
+		if (Integer.parseInt(args[0]) < Integer.parseInt(args[1])) {
+			System.out.println("Incorrect run"); 
+			System.exit(0);
+			}
+		if ( args.length == 2 ) {
+			Connect4GUI connect = new Connect4GUI(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+		} else {
+			System.out.println("Please enter command in this format: java -jar Connect4.jar  <boardsize> <numToWin>");
+		}
 	}
-
 }

@@ -1,28 +1,27 @@
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Connect4Controller implements ActionListener {
 	
-	static JButton b[][];
+	protected static JButton b[][];
 	CheckPosition model;
 	private int size;
 	private boolean player1;
 	boolean isOdd = true;
 	private boolean validMove;
-	private boolean won;
 	Connect4GUI view = new Connect4GUI();
 
-
-	//constructor
+	/*
+	 * Connect4Controller constructor
+	 * @param x set size and y sets size of win
+	 */
 	public Connect4Controller(int size, int win) {
 		model = new CheckPosition(size, win);
 		this.size = size; 
@@ -30,13 +29,15 @@ public class Connect4Controller implements ActionListener {
 		player1 = true;
 	}
 	
+	/*
+	 * CheckPosition constructor
+	 */
 	public Connect4Controller() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
-	 * retunrs a JPanel to be used by the game as the game panel with the buttons
-	 * @params none
+	 * returns a JPanel to be used by the game as the game panel with the buttons
+	 * @param none
 	 * @return JPanel
 	 */
 	public JPanel layout() {
@@ -55,11 +56,9 @@ public class Connect4Controller implements ActionListener {
 	}
 	
 	/*
-	 * required method since the class implements actin listener
+	 * required method since the class implements action listener
 	 * @return void
-	 * 
 	 */
-	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JButton b = (JButton) ae.getSource();
@@ -75,7 +74,11 @@ public class Connect4Controller implements ActionListener {
 		dropPiece(pos);
 	}
 	
-	
+	/*
+	 * dropPiece will allow a move if valid.
+	 * @param is position of selected mouse click 
+	 * @return void
+	 */	
 	private void dropPiece(int pos) {
 		int row = (pos)/ size;
 		int column = pos % size;
@@ -92,10 +95,15 @@ public class Connect4Controller implements ActionListener {
 		validMove = false;
 		}
 		model.add(move, column, player1);
-		won = model.checkWinner();
+		model.checkWinner();
 
 	}
 	
+	/*
+	 * checkRow will check the next valid move in a column
+	 * @param is position of selected mouse click 
+	 * @return void
+	 */	
 	private int checkRow(int row, int col) {
 		int r = 0; 
 		for (int i = 0; i < size; i++) {
@@ -107,26 +115,24 @@ public class Connect4Controller implements ActionListener {
 		return r;
 	}
 	
-	
-	public JPanel winner() {
+	/*
+	 * status returns the current status of the game.
+	 * @param none
+	 * @return JPanel
+	 */
+	public JPanel status() {
 		JPanel win = new JPanel(new FlowLayout());
-		JLabel winner = new JLabel("");
-
-//		if (won) {
-			winner.setText("GAMEOVER? true");
-	//	} else {
-			winner.setText("GAMEOVER? false");
-//		}
-		
-		win.add(winner);
-		
-		//TODO Change JLabel to winner
-		
+		JLabel status = new JLabel("");
+		status.setText("GAMEOVER? false");
+		win.add(status);	
 		return win;
 	}
 
+	/*
+	 * Updates User Interface
+	 * @param none
+	 */
 	public void updateUI() {
 		view.updateUI();
-		
 	}
 }
