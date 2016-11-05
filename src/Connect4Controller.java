@@ -1,20 +1,25 @@
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Connect4Controller implements ActionListener {
+	
 	static JButton b[][];
 	CheckPosition a;
 	private int size;
 	private boolean player1;
+	
 	private boolean validMove;
 	private boolean won;
 
 
+	//constructor
 	public Connect4Controller(int size, int win) {
 		a = new CheckPosition(size, win);
 		this.size = size; 
@@ -22,6 +27,11 @@ public class Connect4Controller implements ActionListener {
 		player1 = true;
 	}
 	
+	/*
+	 * retunrs a JPanel to be used by the game as the game panel with the buttons
+	 * @params none
+	 * @return JPanel
+	 */
 	public JPanel layout() {
 		JPanel n = new JPanel(new GridLayout(size,size));
 		int count = 0;
@@ -36,6 +46,12 @@ public class Connect4Controller implements ActionListener {
 			}
 		return n;
 	}
+	
+	/*
+	 * required method since the class implements actin listener
+	 * @return void
+	 * 
+	 */
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
