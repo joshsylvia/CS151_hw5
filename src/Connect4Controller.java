@@ -1,4 +1,6 @@
 
+import java.awt.Button;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class Connect4Controller implements ActionListener {
 	CheckPosition a;
 	private int size;
 	private boolean player1;
-	
+	boolean isOdd = true;
 	private boolean validMove;
 	private boolean won;
 
@@ -55,6 +57,14 @@ public class Connect4Controller implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
+		JButton b = (JButton) ae.getSource();
+		if(isOdd){
+			b.setForeground(Color.BLUE);
+			isOdd = false;
+		}else{
+			b.setForeground(Color.RED);
+			isOdd = true;
+		}
 		String position = ae.getActionCommand();
 		int pos = Integer.valueOf(position);
 		dropPiece(pos);
